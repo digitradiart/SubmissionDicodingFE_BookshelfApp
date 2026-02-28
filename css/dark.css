@@ -1,14 +1,21 @@
 :root {
-  --app-bg: #05060f;
-  --panel-bg: #11142b;
-  --border: rgba(148, 163, 184, 0.25);
-  --text-primary: #e2e8f0;
-  --text-muted: #94a3b8;
-  --accent: #c084fc;
-  --accent-strong: #a855f7;
-  --danger: #fb7185;
-  --success: #34d399;
+  --app-bg: #0b1517;
+  --panel-bg: #122126;
+  --border: rgba(148, 163, 184, 0.2);
+  --text-primary: #e6f1ef;
+  --text-muted: #9fb7b3;
+  --accent: #2dd4bf;
+  --accent-strong: #7ce7da;
+  --danger: #ff8b8b;
+  --success: #4ade80;
   --shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  --field-bg: #1a2d33;
+  --field-text: #e6f1ef;
+  --field-border: rgba(159, 183, 179, 0.45);
+  --control-bg: #1a2d33;
+  --control-border: rgba(159, 183, 179, 0.45);
+  --icon-color: #e6f1ef;
+  --icon-accent: #7ce7da;
 }
 
 body {

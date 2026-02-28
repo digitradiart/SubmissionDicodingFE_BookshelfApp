@@ -1,16 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Material+Icons+Outlined&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700&family=Material+Icons+Outlined&display=swap");
 
 :root {
-  --app-bg: #f5f6fb;
-  --panel-bg: #ffffff;
-  --border: rgba(15, 23, 42, 0.08);
-  --text-primary: #0f172a;
-  --text-muted: #475569;
-  --accent: #7c3aed;
-  --accent-strong: #5f30e2;
-  --danger: #dc2626;
-  --success: #0f9d58;
-  --shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+  --radius-control: 12px;
 }
 
 * {
@@ -20,7 +11,7 @@
 }
 
 body {
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
   background-color: var(--app-bg);
   color: var(--text-primary);
   min-height: 100vh;
@@ -28,15 +19,36 @@ body {
 
 .hero {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  position: relative;
   padding: 1.5rem 4vw;
   border-bottom: 1px solid transparent;
 }
 
+.hero__brand {
+  text-align: center;
+}
+
+.hero__actions {
+  position: absolute;
+  right: 4vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .logo {
+  font-family: "Sora", sans-serif;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.logo__icon {
+  font-size: 2rem;
+  color: var(--icon-accent);
 }
 
 .tagline {
@@ -110,11 +122,17 @@ body {
 }
 
 .form-field input {
-  border-radius: 10px;
-  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  border: 1px solid var(--field-border);
   padding: 0.85rem 1rem;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--field-bg);
+  color: var(--field-text);
+  caret-color: var(--field-text);
+}
+
+.form-field input::placeholder {
+  color: var(--text-muted);
 }
 
 .form-grid {
@@ -142,14 +160,16 @@ body {
 }
 
 .btn {
-  border-radius: 999px;
+  border-radius: var(--radius-control);
   border: 1px solid transparent;
   padding: 0.75rem 1.5rem;
   background: transparent;
   font-weight: 600;
   color: var(--text-primary);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .btn.primary {
@@ -159,14 +179,15 @@ body {
 }
 
 .btn.ghost {
-  border-color: rgba(15, 23, 42, 0.2);
+  border-color: var(--control-border);
 }
 
 .btn.icon-btn {
-  border-radius: 12px;
+  border-radius: var(--radius-control);
   padding: 0.6rem;
-  border: 1px solid rgba(15, 23, 42, 0.2);
-  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--control-border);
+  background: var(--control-bg);
+  color: var(--icon-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,10 +206,24 @@ body {
 .search input {
   width: 220px;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  padding: 0.6rem 1rem;
+  border: 1px solid var(--control-border);
+  padding: 0.68rem 1rem;
   font-size: 0.95rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--field-bg);
+  color: var(--field-text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.search input::placeholder {
+  color: var(--text-muted);
+}
+
+.search input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(17, 94, 89, 0.18);
 }
 
 .shelf-grid {
@@ -236,10 +271,10 @@ body {
 }
 
 .badge {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(15, 118, 110, 0.12);
   color: var(--accent-strong);
   padding: 0.35rem 0.75rem;
-  border-radius: 999px;
+  border-radius: var(--radius-control);
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -257,6 +292,17 @@ body {
 .book-card h3 {
   font-size: 1.2rem;
   color: var(--text-primary);
+}
+
+.book-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.book-title__icon {
+  font-size: 1.1rem;
+  color: var(--icon-accent);
 }
 
 .book-card__meta {
@@ -281,7 +327,7 @@ body {
 .card-actions button {
   flex: 1;
   min-width: 110px;
-  border-radius: 12px;
+  border-radius: var(--radius-control);
   border: 1px solid transparent;
   padding: 0.45rem 0.75rem;
   font-size: 0.9rem;
@@ -289,8 +335,8 @@ body {
 }
 
 .card-actions .move {
-  background: rgba(79, 70, 229, 0.1);
-  border-color: rgba(79, 70, 229, 0.3);
+  background: rgba(15, 118, 110, 0.1);
+  border-color: rgba(15, 118, 110, 0.28);
   color: var(--accent-strong);
 }
 
@@ -325,8 +371,17 @@ body {
 @media screen and (max-width: 600px) {
   .hero {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.75rem;
+  }
+
+  .hero__brand {
+    width: 100%;
+  }
+
+  .hero__actions {
+    position: static;
+    transform: none;
   }
 
   .form-actions {

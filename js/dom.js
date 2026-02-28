@@ -27,8 +27,13 @@ function createBookCard(book) {
     : "Tandai selesai dibaca";
 
   const title = document.createElement("h3");
-  title.textContent = book.title;
+  title.className = "book-title";
   title.setAttribute("data-testid", "bookItemTitle");
+  const titleIcon = document.createElement("span");
+  titleIcon.className = "material-icons-outlined book-title__icon";
+  titleIcon.setAttribute("aria-hidden", "true");
+  titleIcon.textContent = "menu_book";
+  title.append(titleIcon, document.createTextNode(book.title));
 
   const author = document.createElement("p");
   author.className = "book-card__meta";

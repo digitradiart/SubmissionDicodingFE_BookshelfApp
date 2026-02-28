@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookshelf by Ayu</title>
-    <link rel="stylesheet" href="css/light.css" id="theme-link" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/light.css" id="theme-link" />
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined"
       rel="stylesheet"
@@ -16,9 +16,14 @@
   <body>
     <header class="hero">
       <div class="hero__brand">
-        <div class="logo">Bookshelf</div>
+        <div class="logo">
+          <span class="material-icons-outlined logo__icon" aria-hidden="true"
+            >auto_stories</span
+          >
+          <span>bukuku</span>
+        </div>
         <p class="tagline">
-          Atur rak bacaanmu, simpan progres, dan lanjutkan inspirasi.
+          Atur rak bacaanmu, simpan progres, dan lanjutkan membaca bersamaku :)
         </p>
       </div>
       <div class="hero__actions">
@@ -50,6 +55,7 @@
               required
               maxlength="150"
               autocomplete="off"
+              placeholder="Tuliskan judul buku di sini"
             />
           </div>
           <div class="form-grid">
