@@ -1,100 +1,66 @@
-const STORAGE_KEY = "TODO_APPS";
+const STORAGE_KEY = 'BOOKSHELF_APPS';
 
-/**
- * [
- *    {
- *      id: <int>
- *      task: <string>
- *      timestamp: <string>
- *      isCompleted: <boolean>
- *    }
- * ]
- */
+let books = [];
 
-let todos = [];
-
-/**
- * Fungsi ini digunakan untuk memeriksa apakah localStorage didukung oleh browser atau tidak
- * 
- * @returns boolean 
- */
-function isStorageExist() /* boolean */ {
-    if (typeof(Storage) === undefined) {
-        alert("Browser kamu tidak mendukung local storage");
-        return false
-    }
-    return true;
+function isStorageExist() {
+  if (typeof Storage === 'undefined') {
+    alert('Browser kamu tidak mendukung localStorage.');
+    return false;
+  }
+  return true;
 }
 
-/**
- * Fungsi ini digunakan untuk menyimpan data ke localStorage
- * berdasarkan KEY yang sudah ditetapkan sebelumnya.
- */
 function saveData() {
-    const parsed /* string */ = JSON.stringify(todos);
-    localStorage.setItem(STORAGE_KEY, parsed);
-    document.dispatchEvent(new Event("ondatasaved"));
+  const parsed = JSON.stringify(books);
+  localStorage.setItem(STORAGE_KEY, parsed);
+  document.dispatchEvent(new Event('ondatasaved'));
 }
 
-/**
- * Fungsi ini digunakan untuk memuat data dari localStorage
- * Dan memasukkan data hasil parsing ke variabel {@see todos}
- */
 function loadDataFromStorage() {
-    const serializedData /* string */ = localStorage.getItem(STORAGE_KEY);
+  const serializedData = localStorage.getItem(STORAGE_KEY);
+  if (serializedData === null) {
+    books = [];
+    document.dispatchEvent(new Event('ondataloaded'));
+    return;
+  }
 
-    let data = JSON.parse(serializedData);
-
-    if (data !== null)
-        todos = data;
-
-    document.dispatchEvent(new Event("ondataloaded"));
+  const data = JSON.parse(serializedData);
+  if (Array.isArray(data)) {
+    books = data;
+  }
+  document.dispatchEvent(new Event('ondataloaded'));
 }
 
 function updateDataToStorage() {
-    if (isStorageExist())
-        saveData();
+  if (isStorageExist()) {
+    saveData();
+  }
 }
 
-// function composeTodoObject(task, timestamp, isCompleted) {
-//     return {
-//         id: +new Date(),
-//         task,
-//         timestamp,
-//         isCompleted
-//     };
-// }
-
-function composeTodoObject(isbn, title, author, date, isCompleted) {
-    return {
-        id: +new Date(),
-        isbn,
-        title,
-        author,
-        date,
-        isCompleted
-    };
+function composeBookObject(title, author, year, isComplete) {
+  return {
+    id: +new Date(),
+    title,
+    author,
+    year,
+    isComplete,
+  };
 }
 
-function findTodo(todoId) {
-
-    for (todo of todos) {
-        if (todo.id === todoId)
-            return todo;
+function findBook(bookId) {
+  for (const book of books) {
+    if (book.id === bookId) {
+      return book;
     }
-
-    return null;
+  }
+  return null;
 }
 
-function findTodoIndex(todoId) {
-
-    let index = 0
-    for (todo of todos) {
-        if (todo.id === todoId)
-            return index;
-
-        index++;
+function findBookIndex(bookId) {
+  for (let index = 0; index < books.length; index += 1) {
+    if (books[index].id === bookId) {
+      return index;
     }
-
-    return -1;
+  }
+  return -1;
 }

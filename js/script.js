@@ -1,21 +1,50 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', () => {
+  bookForm.addEventListener('submit', handleFormSubmit);
 
-    const submitForm /* HTMLFormElement */ = document.getElementById("form");
+  if (isStorageExist()) {
+    loadDataFromStorage();
+  } else {
+    renderBooks();
+  }
+});
 
-    submitForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-        addBooks();
-    });
+document.addEventListener('ondatasaved', () => {
+  console.info('Data berhasil disimpan di localStorage.');
+});
 
-    if (isStorageExist()) {
-        loadDataFromStorage();
+document.addEventListener('ondataloaded', () => {
+  renderBooks(getCurrentFilter());
+});
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+  const title = titleInput.value.trim();
+  const author = authorInput.value.trim();
+  const year = Number(yearInput.value);
+  const isComplete = statusInput.checked;
+
+  if (!title || !author || Number.isNaN(year) || year <= 0) {
+    alert('Lengkapi judul, penulis, dan tahun buku yang valid.');
+    return;
+  }
+
+  if (editingBookId) {
+    const book = findBook(editingBookId);
+    if (!book) {
+      resetForm();
+      return;
     }
-});
+    book.title = title;
+    book.author = author;
+    book.year = year;
+    book.isComplete = isComplete;
+    editingBookId = null;
+  } else {
+    const bookObject = composeBookObject(title, author, year, isComplete);
+    books.push(bookObject);
+  }
 
-document.addEventListener("ondatasaved", () => {
-    console.log("Data berhasil di simpan.");
-});
-
-document.addEventListener("ondataloaded", () => {
-    refreshDataFromTodos();
-});
+  updateDataToStorage();
+  renderBooks(getCurrentFilter());
+  resetForm();
+}

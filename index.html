@@ -1,110 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookshelf by Ayu</title>
-    <link rel="stylesheet" href="css/light.css" id="theme-link">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="css/light.css" id="theme-link" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-    <nav>
-        <div class="logo flex-item">Let's read!</div>
-        <div class="float-right" style="display: inline-block;">
-            <button><span class="plusBtn flex-item">+</span></button>
-            <button><span class="material-icons md-48" id="btn-toggle">brightness_4</span></button>
-        </div>
-    </nav>
-
-    <div class="wrapper">
-        <div class="container bg-white shadow">
-            <h2 class="container-header text-center">Add Books</h2>
-            <!-- {
-                id: string | number,
-                title: string,
-                author: string,
-                isComplete: boolean,
-              } -->
-            <form class="form appearThis" action="#" id="form">
-                <div class="form-group form-title">
-                    <label for="isbn">ISBN</label>
-                    <input type="number" id="isbn" name="isbn" required>
-                </div>
-
-                <div class="form-group form-title">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title" required>
-                </div>
-
-                <div class="form-group form-title">
-                    <label for="author">Author</label>
-                    <input type="text" id="author" name="author" required>
-                </div>
-
-                <div class="form-group form-title">
-                    <label for="date">Deadline</label>
-                    <input type="date" id="date" name="date" required>
-                </div>
-
-                <input type="submit" value="Submit" name="Submit" class="btn-submit">
-
-                <input type='submit' value="Exit" name="Exit" class='exitBtn'>
-
-            </form>
-        </div>
-
-        <div class="container bg-white shadow">
-            <h2 class="container-header text-center">Unread Books</h2>
-            <div class="list-item" id="unreadBooks">
-                <!-- diisi di sini -->
-                <table>
-                    <tr>
-                        <th>ISBN</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Deadline</th>
-                        <th>Status</th>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-
-        <div class="container bg-white shadow">
-            <h2 class="container-header text-center">Read Books</h2>
-            <div class="list-item" id="readBooks">
-                <!-- diisi di sini -->
-                <table>
-                    <tr>
-                        <th>ISBN</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Deadline</th>
-                        <th>Status</th>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <footer class="text-center">
-        <p>
-            Bookshelf Apps by Ayu Agustina.
-
+  <body>
+    <header class="hero">
+      <div class="hero__brand">
+        <div class="logo">Bookshelf</div>
+        <p class="tagline">
+          Atur rak bacaanmu, simpan progres, dan lanjutkan inspirasi.
         </p>
-        <p>
-            &copy Submission for IDCamp x Dicoding 2021.
-        </p>
+      </div>
+      <div class="hero__actions">
+        <button
+          id="theme-toggle"
+          class="btn icon-btn"
+          aria-label="Toggle theme"
+        >
+          <span class="material-icons-outlined">light_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel form-panel shadow">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Formulir Buku</p>
+            <h2 id="formTitle">Tambah Buku Baru</h2>
+          </div>
+        </div>
+        <form id="book-form" class="form">
+          <div class="form-field">
+            <label for="title">Judul Buku</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              required
+              maxlength="150"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="author">Penulis</label>
+              <input
+                type="text"
+                id="author"
+                name="author"
+                required
+                maxlength="90"
+                autocomplete="off"
+              />
+            </div>
+            <div class="form-field">
+              <label for="year">Tahun Terbit</label>
+              <input
+                type="number"
+                id="year"
+                name="year"
+                required
+                min="1"
+                max="9999"
+              />
+            </div>
+          </div>
+          <label class="checkbox">
+            <input type="checkbox" id="isComplete" name="isComplete" />
+            <span>Selesai dibaca</span>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="btn primary" id="formSubmit">
+              Simpan buku
+            </button>
+            <button type="button" class="btn ghost" id="formCancel">
+              Batal
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel shelf-panel">
+        <div class="panel-header panel-header--bordered">
+          <div>
+            <p class="eyebrow">Rak Aktif</p>
+            <h2>Rak Buku</h2>
+          </div>
+          <div class="search">
+            <label for="searchBook" class="sr-only">Cari judul buku</label>
+            <input
+              type="search"
+              id="searchBook"
+              placeholder="Cari berdasarkan judul..."
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <div class="shelf-grid">
+          <article class="shelf-card shadow">
+            <header class="shelf-card__header">
+              <div>
+                <h3>Belum selesai dibaca</h3>
+              </div>
+              <span id="count-incomplete" class="badge">0</span>
+            </header>
+            <div id="incompleteBookshelfList" class="shelf-card__list"></div>
+          </article>
+          <article class="shelf-card shadow">
+            <header class="shelf-card__header">
+              <div>
+                <h3>Selesai dibaca</h3>
+              </div>
+              <span id="count-complete" class="badge">0</span>
+            </header>
+            <div id="completedBookshelfList" class="shelf-card__list"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Bookshelf Apps by Ayu</p>
+      <h5>Submission Dicoding 2026</h5>
     </footer>
 
     <script src="js/data.js"></script>
     <script src="js/dom.js"></script>
     <script src="js/script.js"></script>
     <script src="js/toggle.js"></script>
-</body>
-
+  </body>
 </html>
