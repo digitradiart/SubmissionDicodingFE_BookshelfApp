@@ -8,10 +8,11 @@
   --accent-strong: #7ce7da;
   --danger: #ff8b8b;
   --success: #4ade80;
-  --shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  --card-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
   --field-bg: #1a2d33;
   --field-text: #e6f1ef;
   --field-border: rgba(159, 183, 179, 0.45);
+  --field-focus-ring: rgba(45, 212, 191, 0.28);
   --control-bg: #1a2d33;
   --control-border: rgba(159, 183, 179, 0.45);
   --icon-color: #e6f1ef;

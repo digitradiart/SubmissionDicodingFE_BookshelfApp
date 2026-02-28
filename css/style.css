@@ -73,7 +73,7 @@ body {
 }
 
 .shadow {
-  box-shadow: var(--shadow);
+  box-shadow: var(--card-shadow);
 }
 
 .panel-header {
@@ -121,18 +121,33 @@ body {
   color: var(--text-primary);
 }
 
-.form-field input {
+.form-field input,
+.search input {
   border-radius: var(--radius-control);
   border: 1px solid var(--field-border);
   padding: 0.85rem 1rem;
-  font-size: 1rem;
+  font-size: 0.95rem;
   background: var(--field-bg);
   color: var(--field-text);
   caret-color: var(--field-text);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-.form-field input::placeholder {
+.form-field input::placeholder,
+.search input::placeholder {
   color: var(--text-muted);
+}
+
+.form-field input:focus,
+.search input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--field-focus-ring);
 }
 
 .form-grid {
@@ -205,25 +220,7 @@ body {
 
 .search input {
   width: 220px;
-  border-radius: 999px;
-  border: 1px solid var(--control-border);
-  padding: 0.68rem 1rem;
-  font-size: 0.95rem;
-  background: var(--field-bg);
-  color: var(--field-text);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  appearance: none;
-  -webkit-appearance: none;
-}
-
-.search input::placeholder {
-  color: var(--text-muted);
-}
-
-.search input:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(17, 94, 89, 0.18);
+  padding-right: 2.2rem;
 }
 
 .shelf-grid {
@@ -287,6 +284,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
+  box-shadow: var(--card-shadow);
 }
 
 .book-card h3 {

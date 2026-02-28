@@ -1,37 +1,26 @@
 :root {
-  --app-bg: #f5f7f2;
+  --app-bg: #f3f8f6;
   --panel-bg: #ffffff;
-  --border: rgba(15, 23, 42, 0.08);
+  --border: rgba(15, 23, 42, 0.1);
   --text-primary: #0f172a;
-  --text-muted: #475569;
+  --text-muted: #49616d;
   --accent: #0f766e;
-  --accent-strong: #115e59;
+  --accent-strong: #0b5f59;
   --danger: #dc2626;
   --success: #0f9d58;
-  --shadow: 0 20px 45px rgba(15, 23, 42, 0.15);
-  --field-bg: #ffffff;
+  --card-shadow: 0 10px 26px rgba(15, 23, 42, 0.09);
+  --field-bg: #fdfefe;
   --field-text: #0f172a;
-  --field-border: rgba(15, 23, 42, 0.2);
+  --field-border: rgba(15, 23, 42, 0.16);
+  --field-focus-ring: rgba(15, 118, 110, 0.2);
   --control-bg: #ffffff;
-  --control-border: rgba(15, 23, 42, 0.2);
+  --control-border: rgba(15, 23, 42, 0.16);
   --icon-color: #0f172a;
-  --icon-accent: #115e59;
+  --icon-accent: #0b5f59;
 }
 
 body {
   background-color: var(--app-bg);
   color: var(--text-primary);
   color-scheme: light;
-}
-
-.form-field input,
-.search {
-  border: 1px solid var(--accent);
-}
-
-.form-field input:focus,
-.search input:focus {
-  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.3);
-  border-radius: var(--radius-control);
-  outline: none;
 }
